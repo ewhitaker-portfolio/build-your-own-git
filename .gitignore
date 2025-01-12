@@ -1,4 +1,4 @@
-# Project Build Directory #
+# Maven #
 target/
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -7,3 +7,6 @@ target/
 .settings/
 .project
 .classpath
+
+# Intellij IDEA #
+.idea/
