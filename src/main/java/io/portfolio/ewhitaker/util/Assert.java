@@ -1,35 +1,27 @@
 package io.portfolio.ewhitaker.util;
 
 public final class Assert {
-    private static final boolean ENABLED = Boolean.parseBoolean(System.getProperty("custom.assert.enabled"));
-
     private Assert() {
         super();
     }
 
     public static <T> T isNotNull(T instance) {
-        if (ENABLED && instance == null) {
-            throw new Panic("object must not be null");
-        }
-        return instance;
+        return isNotNull(instance, "object must not be null");
     }
 
     public static <T> T isNotNull(T instance, String message) {
-        if (ENABLED && instance == null) {
+        if (instance == null) {
             throw new Panic(message == null ? "object must not be null" : message);
         }
         return instance;
     }
 
     public static <T> T isInstanceOf(Class<T> target, Object instance) {
-        if (ENABLED && !isNotNull(target, "target class must not be null").isInstance(instance)) {
-            throw new Panic(findInstanceOfMessage(target, instance, null));
-        }
-        return target.cast(instance);
+        return isInstanceOf(target, instance, null);
     }
 
     public static <T> T isInstanceOf(Class<T> target, Object instance, String message) {
-        if (ENABLED && !isNotNull(target, "target class must not be null").isInstance(instance)) {
+        if (!isNotNull(target, "target class must not be null").isInstance(instance)) {
             throw new Panic(findInstanceOfMessage(target, instance, message));
         }
         return target.cast(instance);
@@ -45,10 +37,17 @@ public final class Assert {
             }
             result.append(" ");
         }
-        return result.append("Object of class [").append(classname).append("] must be an instance of ").append(type).toString();
+        return result.append("Object of class [").append(classname).append("] must be an instance of ")
+                .append(type).toString();
     }
 
     private static boolean endsWithPunctuation(StringBuilder message) {
-        return message.charAt(message.length() - 1) == ',' || message.charAt(message.length() - 1) == '?' || message.charAt(message.length() - 1) == '!' || message.charAt(message.length() - 1) == '-' || message.charAt(message.length() - 1) == '.' || message.charAt(message.length() - 1) == ':' || message.charAt(message.length() - 1) == ';';
+        return message.charAt(message.length() - 1) == ','
+                || message.charAt(message.length() - 1) == '?'
+                || message.charAt(message.length() - 1) == '!'
+                || message.charAt(message.length() - 1) == '-'
+                || message.charAt(message.length() - 1) == '.'
+                || message.charAt(message.length() - 1) == ':'
+                || message.charAt(message.length() - 1) == ';';
     }
 }
