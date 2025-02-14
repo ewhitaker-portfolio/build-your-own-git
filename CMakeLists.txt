@@ -12,6 +12,7 @@ file(GLOB_RECURSE SOURCES src/*.c)
 add_library(build-your-own-git SHARED ${INCLUDES} ${SOURCES})
 target_include_directories(
     build-your-own-git PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main/c/include
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main/c/include/build-your-own-git
     $ENV{JAVA_HOME}/include $ENV{JAVA_HOME}/include/linux
 )
