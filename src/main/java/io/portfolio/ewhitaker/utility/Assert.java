@@ -1,8 +1,16 @@
-package io.portfolio.ewhitaker.util;
+package io.portfolio.ewhitaker.utility;
 
 public final class Assert {
     private Assert() {
         super();
+    }
+
+    // TODO: better error message
+    public static <T> T isEqual(T expected, T actual, String message) {
+        if ((expected != actual) && (expected == null || !expected.equals(actual))) {
+            throw new Panic(message == null ? "expected %s: actual %s".formatted(expected, actual) : message);
+        }
+        return actual;
     }
 
     public static <T> T isNotNull(T instance) {

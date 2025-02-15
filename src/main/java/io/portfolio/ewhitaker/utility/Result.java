@@ -1,4 +1,4 @@
-package io.portfolio.ewhitaker.util;
+package io.portfolio.ewhitaker.utility;
 
 public sealed interface Result<T> {
     final class Ok<T> implements Result<T> {

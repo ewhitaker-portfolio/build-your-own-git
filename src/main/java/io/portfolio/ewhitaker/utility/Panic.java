@@ -1,4 +1,4 @@
-package io.portfolio.ewhitaker.util;
+package io.portfolio.ewhitaker.utility;
 
 public class Panic extends Error {
     public Panic() {

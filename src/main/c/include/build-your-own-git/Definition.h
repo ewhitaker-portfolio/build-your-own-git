@@ -8,6 +8,9 @@ extern "C" {
 #define PUBLIC extern
 #define PRIVATE static
 
+#define SYSCALL_MKDIR 83
+#define SYSCALL_CREAT 85
+
 #ifdef __cplusplus
 }
 #endif
