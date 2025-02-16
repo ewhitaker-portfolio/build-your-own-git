@@ -1,21 +1,20 @@
-#include "Definition.h"
+#include "Definitions.h"
 #include "io_portfolio_ewhitaker_system_SystemCall.h"
-
-// TODO: abstract
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    creat
- * Signature: (Ljava/lang/String;I)I
+ * Signature: (Ljava/lang/String;J)I
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat(
-    JNIEnv *env, jclass clazz, jstring jpathname, jint jmode) {
-    long result;
+    JNIEnv *env, jclass clazz, jstring jpathname, jlong jmode
+) {
+    INT result;
 
-    const char *pathname = (*env)->GetStringUTFChars(env, jpathname, NULL);
+    STRING pathname = (*env)->GetStringUTFChars(env, jpathname, NULL);
     unsigned int mode = jmode;
 
-    register const char *arg1 asm("rdi") = pathname;
+    register STRING arg1 asm("rdi") = pathname;
     register unsigned int arg2 asm("rsi") = mode;
 
     asm volatile("syscall\n\t"
@@ -31,16 +30,17 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat(
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    mkdir
- * Signature: (Ljava/lang/String;I)I
+ * Signature: (Ljava/lang/String;J)I
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_mkdir(
-    JNIEnv *env, jclass clazz, jstring jpathname, jint jmode) {
-    long result;
+    JNIEnv *env, jclass clazz, jstring jpathname, jlong jmode
+) {
+    INT result;
 
-    const char *pathname = (*env)->GetStringUTFChars(env, jpathname, NULL);
+    STRING pathname = (*env)->GetStringUTFChars(env, jpathname, NULL);
     unsigned int mode = jmode;
 
-    register const char *arg1 asm("rdi") = pathname;
+    register STRING arg1 asm("rdi") = pathname;
     register unsigned int arg2 asm("rsi") = mode;
 
     asm volatile("syscall\n\t"

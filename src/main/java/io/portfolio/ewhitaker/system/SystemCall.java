@@ -9,7 +9,7 @@ public final class SystemCall {
         super();
     }
 
-    public static native int creat(String pathname, int mode);
+    public static native int creat(String pathname, long mode);
 
-    public static native int mkdir(String pathname, int mode);
+    public static native int mkdir(String pathname, long mode);
 }

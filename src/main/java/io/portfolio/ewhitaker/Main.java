@@ -1,10 +1,11 @@
 package io.portfolio.ewhitaker;
 
-import io.portfolio.ewhitaker.system.FileDescriptor;
-import io.portfolio.ewhitaker.system.FileDescriptor.File;
+import java.util.Map;
 
 public interface Main {
     static void main(String[] args) {
-        FileDescriptor fd = new File("/home/treyvon/src/build-your-own-git/hello.txt", 0664);
+        for (Map.Entry<Object, Object> entry : System.getProperties().entrySet()) {
+            System.out.printf("key %s value %s\n", entry.getKey(), entry.getValue());
+        }
     }
 }

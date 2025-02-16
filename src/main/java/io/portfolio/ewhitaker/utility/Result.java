@@ -14,14 +14,14 @@ public sealed interface Result<T> {
     }
 
     final class Error<T> implements Result<T> {
-        private final Throwable error;
+        private final Panic error;
 
-        private Error(Throwable error) {
+        private Error(Panic error) {
             this.error = error;
         }
     }
 
-    static <T> Result<T> error(Throwable error) {
+    static <T> Result<T> error(Panic error) {
         return new Error<>(error);
     }
 

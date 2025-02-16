@@ -10,18 +10,18 @@ extern "C" {
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    creat
- * Signature: (Ljava/lang/String;I)I
+ * Signature: (Ljava/lang/String;J)I
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat
-  (JNIEnv *, jclass, jstring, jint);
+  (JNIEnv *, jclass, jstring, jlong);
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    mkdir
- * Signature: (Ljava/lang/String;I)I
+ * Signature: (Ljava/lang/String;J)I
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_mkdir
-  (JNIEnv *, jclass, jstring, jint);
+  (JNIEnv *, jclass, jstring, jlong);
 
 #ifdef __cplusplus
 }
