@@ -1,11 +1,36 @@
 package io.portfolio.ewhitaker;
 
-import java.util.Map;
+import io.portfolio.ewhitaker.system.file.FilePermission;
+import io.portfolio.ewhitaker.system.file.FileDescriptor;
+import io.portfolio.ewhitaker.system.SystemCall;
+import io.portfolio.ewhitaker.system.file.File;
+import io.portfolio.ewhitaker.system.file.FileStatus;
+import io.portfolio.ewhitaker.utility.BitSet;
+import io.portfolio.ewhitaker.utility.Panic;
 
 public interface Main {
     static void main(String[] args) {
-        for (Map.Entry<Object, Object> entry : System.getProperties().entrySet()) {
-            System.out.printf("key %s value %s\n", entry.getKey(), entry.getValue());
+        String pathname = "/home/treyvon/src/build-your-own-git/hello.txt";
+
+        FileStatus statbuf = new FileStatus();
+        if (SystemCall.stat(pathname, statbuf) == 0) {
+            throw new Panic("the initial stat call passed");
         }
+
+        FileDescriptor fd = File.creat(
+                pathname,
+                BitSet.of(
+                        FilePermission.USER_READ,
+                        FilePermission.USER_WRITE,
+                        FilePermission.GROUP_READ,
+                        FilePermission.GROUP_WRITE,
+                        FilePermission.OTHER_READ
+                )
+        ).get();
+
+        if (SystemCall.stat(pathname, statbuf) != 0) {
+            throw new Panic("the final stat call failed");
+        }
+        System.out.printf("type %d\n", statbuf.getType());
     }
 }

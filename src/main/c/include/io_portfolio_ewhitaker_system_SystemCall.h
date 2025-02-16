@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
+ * Method:    stat
+ * Signature: (Ljava/lang/String;Lio/portfolio/ewhitaker/system/file/FileStatus;)I
+ */
+JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_stat
+  (JNIEnv *, jclass, jstring, jobject);
+
+/*
+ * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    creat
  * Signature: (Ljava/lang/String;J)I
  */
@@ -22,6 +30,14 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_mkdir
   (JNIEnv *, jclass, jstring, jlong);
+
+/*
+ * Class:     io_portfolio_ewhitaker_system_SystemCall
+ * Method:    init
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_init
+  (JNIEnv *, jclass);
 
 #ifdef __cplusplus
 }

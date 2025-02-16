@@ -1,8 +1,8 @@
-package io.portfolio.ewhitaker.system.io;
+package io.portfolio.ewhitaker.system.file;
 
 import io.portfolio.ewhitaker.utility.Flag;
 
-public enum FilePermissions implements Flag {
+public enum FilePermission implements Flag {
     USER_ALL(0700),
     USER_READ(0400),
     USER_WRITE(0200),
@@ -18,7 +18,7 @@ public enum FilePermissions implements Flag {
 
     private final int value;
 
-    FilePermissions(int value) {
+    FilePermission(int value) {
         this.value = value;
     }
 

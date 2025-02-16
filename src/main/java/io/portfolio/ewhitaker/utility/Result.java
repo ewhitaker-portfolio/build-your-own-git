@@ -25,10 +25,24 @@ public sealed interface Result<T> {
         return new Error<>(error);
     }
 
+    default boolean isOk() {
+        return switch (this) {
+            case Result.Ok<T> _ -> true;
+            case Result.Error<T> _ -> false;
+        };
+    }
+
+    default boolean isError() {
+        return switch (this) {
+            case Result.Ok<T> _ -> false;
+            case Result.Error<T> _ -> true;
+        };
+    }
+
     default T get() {
         return switch (this) {
             case Result.Ok<T> ok -> ok.value;
-            case Result.Error<T> t -> throw new Panic("Result#get() called on [Result$Error] variant", t.error);
+            case Result.Error<T> err -> throw new Panic("Result#get() called on [Result$Error] variant", err.error);
         };
     }
 }

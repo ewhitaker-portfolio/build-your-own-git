@@ -1,4 +1,4 @@
-package io.portfolio.ewhitaker.system.io;
+package io.portfolio.ewhitaker.system.file;
 
 public final class FileSystem {
     public static final String USER_HOME = System.getProperty("user.home");
