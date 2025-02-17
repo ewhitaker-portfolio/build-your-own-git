@@ -1,11 +1,18 @@
 package io.portfolio.ewhitaker.system.file;
 
-public final class FileAccessMode extends FileOpenOption {
-    public static final FileAccessMode READ_ONLY = new FileAccessMode(00);
-    public static final FileAccessMode WRITE_ONLY = new FileAccessMode(01);
-    public static final FileAccessMode READ_WRITE = new FileAccessMode(02);
+public enum FileAccessMode implements FileOpenOption {
+    READ_ONLY(00),
+    WRITE_ONLY(01),
+    READ_WRITE(02);
 
-    private FileAccessMode(int value) {
-        super(value);
+    private final int value;
+
+    FileAccessMode(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public int value() {
+        return this.value;
     }
 }

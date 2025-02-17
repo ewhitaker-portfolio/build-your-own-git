@@ -2,7 +2,7 @@ package io.portfolio.ewhitaker.system.file;
 
 import io.portfolio.ewhitaker.utility.Panic;
 
-public final class FileStatistics {
+public final class FileStatistic {
     public enum Type {
         DIRECTORY(0x4000),
         REGULAR_FILE(0x8000);
@@ -20,7 +20,7 @@ public final class FileStatistics {
 
     public Type type;
 
-    public FileStatistics() {
+    public FileStatistic() {
         super();
     }
 
@@ -28,6 +28,7 @@ public final class FileStatistics {
         return this.type;
     }
 
+    // TODO: refactor to map after those are added to utils
     public void setType(int typeValue) {
         Type found = null;
         for (Type type : Type.values()) {

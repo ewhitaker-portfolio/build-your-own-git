@@ -1,9 +1,17 @@
 package io.portfolio.ewhitaker.system.file;
 
-public final class FileCreationOption extends FileOpenOption {
-    public static final FileCreationOption CREATE = new FileCreationOption(0100);
+public enum FileCreationOption implements FileOpenOption {
+    CREATE(0100),
+    TRUNCATE(01000);
 
-    private FileCreationOption(int value) {
-        super(value);
+    private final int value;
+
+    FileCreationOption(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public int value() {
+        return this.value;
     }
 }

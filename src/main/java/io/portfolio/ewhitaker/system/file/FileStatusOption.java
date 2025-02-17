@@ -1,7 +1,15 @@
 package io.portfolio.ewhitaker.system.file;
 
-public final class FileStatusOption extends FileOpenOption {
-    private FileStatusOption(int value) {
-        super(value);
+public enum FileStatusOption implements FileOpenOption {
+    ;
+    private final int value;
+
+    FileStatusOption(int value) {
+        this.value = value;
+    }
+
+    @Override
+    public int value() {
+        return this.value;
     }
 }

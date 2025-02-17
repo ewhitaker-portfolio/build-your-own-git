@@ -1,6 +1,6 @@
 package io.portfolio.ewhitaker.system;
 
-import io.portfolio.ewhitaker.system.file.FileStatistics;
+import io.portfolio.ewhitaker.system.file.FileStatistic;
 
 public final class SystemCall {
     static {
@@ -15,9 +15,9 @@ public final class SystemCall {
 
     public static native int open(String pathname, int flags, long mode);
 
-    public static native int stat(String pathname, FileStatistics statbuf);
+    public static native int stat(String pathname, FileStatistic statbuf);
 
-    public static native int fstat(int fd, FileStatistics statbuf);
+    public static native int fstat(int fd, FileStatistic statbuf);
 
     public static native int creat(String pathname, long mode);
 
