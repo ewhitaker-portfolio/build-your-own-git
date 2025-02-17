@@ -12,7 +12,7 @@ public final class BitSet<T extends Flag> {
         return new BitSet<>(value);
     }
 
-    private BitSet(long value) {
+    public BitSet(long value) {
         this.value = value;
     }
 
@@ -26,6 +26,10 @@ public final class BitSet<T extends Flag> {
 
     public void flip(T flag) {
         this.value ^= flag.value();
+    }
+
+    public boolean contains(T flag) {
+        return (this.value & flag.value()) != 0;
     }
 
     public long value() {

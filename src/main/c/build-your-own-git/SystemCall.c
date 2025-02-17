@@ -1,8 +1,12 @@
 #include "Definitions.h"
 #include "io_portfolio_ewhitaker_system_SystemCall.h"
 
-static jclass FileStatusClass;
-static jmethodID FileStatus$getType;
+typedef struct {
+    jclass clazz;
+    jmethodID getType;
+} FileStatisticsReference;
+
+static FileStatisticsReference FileStatistics;
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
@@ -29,7 +33,7 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_stat(
 
     if (result == 0) {
         (*env)->CallVoidMethod(
-            env, jstatbuf, FileStatus$getType, statbuf.st_mode & S_IFMT
+            env, jstatbuf, FileStatistics.getType, statbuf.st_mode & S_IFMT
         );
     }
 
@@ -95,8 +99,8 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_mkdir(
  */
 JNIEXPORT void JNICALL
 Java_io_portfolio_ewhitaker_system_SystemCall_init(JNIEnv* env, jclass clazz) {
-    FileStatusClass =
+    FileStatistics.clazz =
         (*env)->FindClass(env, "io/portfolio/ewhitaker/system/file/FileStatus");
-    FileStatus$getType =
-        (*env)->GetMethodID(env, FileStatusClass, "setType", "(I)V");
+    FileStatistics.getType =
+        (*env)->GetMethodID(env, FileStatistics.clazz, "setType", "(I)V");
 }

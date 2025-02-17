@@ -4,7 +4,7 @@ import io.portfolio.ewhitaker.system.file.FilePermission;
 import io.portfolio.ewhitaker.system.file.FileDescriptor;
 import io.portfolio.ewhitaker.system.SystemCall;
 import io.portfolio.ewhitaker.system.file.File;
-import io.portfolio.ewhitaker.system.file.FileStatus;
+import io.portfolio.ewhitaker.system.file.FileStatistics;
 import io.portfolio.ewhitaker.utility.BitSet;
 import io.portfolio.ewhitaker.utility.Panic;
 
@@ -12,7 +12,7 @@ public interface Main {
     static void main(String[] args) {
         String pathname = "/home/treyvon/src/build-your-own-git/hello.txt";
 
-        FileStatus statbuf = new FileStatus();
+        FileStatistics statbuf = new FileStatistics();
         if (SystemCall.stat(pathname, statbuf) == 0) {
             throw new Panic("the initial stat call passed");
         }

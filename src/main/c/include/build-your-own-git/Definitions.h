@@ -3,6 +3,7 @@
 
 #include <sys/syscall.h>
 #include <sys/stat.h>
+#include <sys/fcntl.h>
 
 #ifdef __cplusplus
 extern "C" {
