@@ -32,8 +32,8 @@ public final class FileSystem {
             return Result.error(new Panic());
         }
 
-        FileStatistic statbuf = new FileStatistic();
-        if (SystemCall.fstat(fd, statbuf) != 0) {
+        FileStatistic statbuf = SystemCall.fstat(fd);
+        if (statbuf == null) {
             return Result.error(new Panic());
         }
 
@@ -46,12 +46,11 @@ public final class FileSystem {
     public static Result<FileStatistic> stat(String pathname) {
         String normalized = FileSystem.normalize(pathname);
 
-        FileStatistic stat = new FileStatistic();
-        int result = SystemCall.stat(normalized, stat);
-        if (result != 0) {
+        FileStatistic statbuf = SystemCall.stat(normalized);
+        if (statbuf == null) {
             return Result.error(new Panic());
         }
-        return Result.ok(stat);
+        return Result.ok(statbuf);
     }
 
     private FileSystem() {

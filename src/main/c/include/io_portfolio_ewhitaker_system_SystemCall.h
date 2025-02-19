@@ -25,27 +25,35 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_open__Ljava
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
- * Method:    stat
- * Signature: (Ljava/lang/String;Lio/portfolio/ewhitaker/system/file/FileStatistic;)I
+ * Method:    close
+ * Signature: (I)I
  */
-JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_stat
-  (JNIEnv *, jclass, jstring, jobject);
+JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_close
+  (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     io_portfolio_ewhitaker_system_SystemCall
+ * Method:    stat
+ * Signature: (Ljava/lang/String;)Lio/portfolio/ewhitaker/system/file/FileStatistic;
+ */
+JNIEXPORT jobject JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_stat
+  (JNIEnv *, jclass, jstring);
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    fstat
- * Signature: (ILio/portfolio/ewhitaker/system/file/FileStatistic;)I
+ * Signature: (I)Lio/portfolio/ewhitaker/system/file/FileStatistic;
  */
-JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_fstat
-  (JNIEnv *, jclass, jint, jobject);
+JNIEXPORT jobject JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_fstat
+  (JNIEnv *, jclass, jint);
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
- * Method:    creat
- * Signature: (Ljava/lang/String;J)I
+ * Method:    getdents
+ * Signature: (IJ)[Lio/portfolio/ewhitaker/system/file/DirectoryEntry;
  */
-JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat
-  (JNIEnv *, jclass, jstring, jlong);
+JNIEXPORT jobjectArray JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_getdents
+  (JNIEnv *, jclass, jint, jlong);
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
@@ -53,6 +61,14 @@ JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat
  * Signature: (Ljava/lang/String;J)I
  */
 JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_mkdir
+  (JNIEnv *, jclass, jstring, jlong);
+
+/*
+ * Class:     io_portfolio_ewhitaker_system_SystemCall
+ * Method:    creat
+ * Signature: (Ljava/lang/String;J)I
+ */
+JNIEXPORT jint JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_creat
   (JNIEnv *, jclass, jstring, jlong);
 
 /*

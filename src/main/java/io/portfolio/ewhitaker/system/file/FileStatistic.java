@@ -19,6 +19,7 @@ public final class FileStatistic {
     }
 
     public Type type;
+    public long blockSize;
 
     public FileStatistic() {
         super();
@@ -41,5 +42,21 @@ public final class FileStatistic {
             throw new Panic();
         }
         this.type = found;
+    }
+
+    public long getBlockSize() {
+        return this.blockSize;
+    }
+
+    public void setBlockSize(long blockSize) {
+        this.blockSize = blockSize;
+    }
+
+    @Override
+    public String toString() {
+        return "FileStatistic{" +
+                "type=" + this.type +
+                ",blockSize=" + this.blockSize +
+                "}";
     }
 }

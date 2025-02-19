@@ -2,7 +2,8 @@ package io.portfolio.ewhitaker.system.file;
 
 public enum FileCreationOption implements FileOpenOption {
     CREATE(0100),
-    TRUNCATE(01000);
+    TRUNCATE(01000),
+    DIRECTORY(0200000);
 
     private final int value;
 
