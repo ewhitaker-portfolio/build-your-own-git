@@ -1,7 +1,7 @@
 #include "Utility.h"
 #include "Definitions.h"
 
-INT lengthString(STRING s) {
+INT length(STRING s) {
     STRING p = s;
     INT len = 0;
     while (*(p++) != '\0') {
@@ -10,11 +10,11 @@ INT lengthString(STRING s) {
     return len;
 }
 
-INT compareString(STRING left, STRING right) {
+INT equals(STRING left, STRING right) {
     STRING lp = left;
     STRING rp = right;
-    INT llen = lengthString(lp);
-    INT rlen = lengthString(rp);
+    INT llen = length(lp);
+    INT rlen = length(rp);
     INT lim = MIN(llen, rlen);
     for (INT i = 0; i < lim + 1; ++i) {
         BYTE l = lp[i];

@@ -20,6 +20,7 @@ extern "C" {
 
 #define MIN(a, b) (a < b ? a : b)
 #define MAX(a, b) (a > b ? a : b)
+#define CLAMP(x, min, max) (MIN(max, MAX(x, min)))
 
 struct linux_dirent {
     unsigned long  d_ino;       /* Inode number */

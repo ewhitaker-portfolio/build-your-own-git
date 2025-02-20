@@ -1,7 +1,6 @@
 package io.portfolio.ewhitaker;
 
 import io.portfolio.ewhitaker.system.file.Directory;
-import io.portfolio.ewhitaker.system.file.DirectoryEntry;
 import io.portfolio.ewhitaker.system.file.FileAccessMode;
 import io.portfolio.ewhitaker.system.file.FileCreationOption;
 import io.portfolio.ewhitaker.system.file.FileSystem;
@@ -20,8 +19,8 @@ public interface Main {
                 null
         ).get();
 
-        for (DirectoryEntry dirent : dir.list().get()) {
-            System.out.printf("%s\n", dirent);
+        for (String name : dir.list().get()) {
+            System.out.println(name);
         }
     }
 }

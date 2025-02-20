@@ -22,17 +22,20 @@ public final class Directory extends FileDescriptor {
         super(pathname, mode, identifier);
     }
 
-    public Result<DirectoryEntry[]> list() {
+    public Result<String[]> list() {
         FileStatistic stat = SystemCall.fstat(identifier());
         if (stat == null) {
             return Result.error(new Panic());
         }
 
-        long count = Math.min(stat.blockSize, MAX_COUNT);
-        DirectoryEntry[] dirents = SystemCall.getdents(identifier(), count);
+        DirectoryEntry[] dirents = SystemCall.getdents(identifier());
         if (dirents == null) {
             return Result.error(new Panic());
         }
-        return Result.ok(dirents);
+        String[] result = new String[dirents.length];
+        for (int i = 0; i < dirents.length; ++i) {
+            result[i] = dirents[i].getName();
+        }
+        return Result.ok(result);
     }
 }

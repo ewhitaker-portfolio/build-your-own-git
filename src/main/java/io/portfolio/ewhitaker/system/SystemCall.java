@@ -22,7 +22,7 @@ public final class SystemCall {
 
     public static native FileStatistic fstat(int fd);
 
-    public static native DirectoryEntry[] getdents(int fd, long count);
+    public static native DirectoryEntry[] getdents(int fd);
 
     public static native int mkdir(String pathname, long mode);
 

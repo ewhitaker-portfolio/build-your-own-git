@@ -50,10 +50,10 @@ JNIEXPORT jobject JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_fstat
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    getdents
- * Signature: (IJ)[Lio/portfolio/ewhitaker/system/file/DirectoryEntry;
+ * Signature: (I)[Lio/portfolio/ewhitaker/system/file/DirectoryEntry;
  */
 JNIEXPORT jobjectArray JNICALL Java_io_portfolio_ewhitaker_system_SystemCall_getdents
-  (JNIEnv *, jclass, jint, jlong);
+  (JNIEnv *, jclass, jint);
 
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall

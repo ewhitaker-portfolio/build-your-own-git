@@ -5,8 +5,12 @@
 extern "C" {
 #endif
 
-int lengthString(const char* s);
-int compareString(const char* left, const char* right);
+int length(const char* s);
+int equals(const char* left, const char* right);
+
+static inline bool isCurrentOrParentDirectory(const char* name) {
+    return equals(".", name) == 0 || equals("..", name) == 0;
+}
 
 #ifdef __cplusplus
 }

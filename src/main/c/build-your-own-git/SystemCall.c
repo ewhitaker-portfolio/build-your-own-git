@@ -1,7 +1,6 @@
 #include "Definitions.h"
 #include "Utility.h"
 #include "io_portfolio_ewhitaker_system_SystemCall.h"
-#include "jni.h"
 
 typedef struct {
     jmethodID constructor;
@@ -33,10 +32,6 @@ setDirent(JNIEnv* env, struct linux_dirent* dirent, jobject jdirent) {
         env, jdirent, DirectoryEntry.setName,
         (*env)->NewStringUTF(env, dirent->d_name)
     );
-}
-
-static inline bool isCurrentOrParentDirectory(const char* name) {
-    return compareString(".", name) == 0 || compareString("..", name) == 0;
 }
 
 /*
@@ -211,11 +206,11 @@ static INT syscall_getdents(unsigned int fd, void* dirp, unsigned int count) {
 /*
  * Class:     io_portfolio_ewhitaker_system_SystemCall
  * Method:    getdents
- * Signature: (IJ)[Lio/portfolio/ewhitaker/system/file/DirectoryEntry;
+ * Signature: (I)[Lio/portfolio/ewhitaker/system/file/DirectoryEntry;
  */
 JNIEXPORT jobjectArray JNICALL
 Java_io_portfolio_ewhitaker_system_SystemCall_getdents(
-    JNIEnv* env, jclass clazz, jint jfd, jlong jcount
+    JNIEnv* env, jclass clazz, jint jfd
 ) {
     INT index = 0;
     INT capacity = 16;
@@ -225,10 +220,16 @@ Java_io_portfolio_ewhitaker_system_SystemCall_getdents(
     );
     jobject jdirp = (*env)->NewObjectArray(env, capacity, direntclass, NULL);
 
-    BYTE dirp[jcount];
+    struct stat statbuf;
+    if (syscall_fstat(jfd, &statbuf) != 0) {
+        return NULL;
+    }
+
+    INT count = CLAMP(statbuf.st_blksize, 1 << 15, 1 << 20);
+    BYTE dirp[count];
 
     INT offset = 0;
-    INT size = syscall_getdents(jfd, dirp, jcount);
+    INT size = syscall_getdents(jfd, dirp, count);
 
     while (size > 0 && offset < size) {
         if (index + 1 >= capacity) {
@@ -248,7 +249,7 @@ Java_io_portfolio_ewhitaker_system_SystemCall_getdents(
         struct linux_dirent* dirent = (struct linux_dirent*)&dirp[offset];
         offset += dirent->d_reclen;
         if (offset >= size) {
-            size = syscall_getdents(jfd, dirp, jcount);
+            size = syscall_getdents(jfd, dirp, count);
         }
         if (isCurrentOrParentDirectory(dirent->d_name)) {
             continue;
